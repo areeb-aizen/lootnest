@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#100b18">
+<meta name="description" content="LootNest — discover stylish finds, smart deals and everyday favourites.">
+<title>LootNest | Shop Smart. Save More.</title>
+<style>
+:root{--bg:#0d0a12;--panel:#17111f;--panel2:#21172c;--gold:#e9c66b;--gold2:#fff0b5;--muted:#b8adbf;--white:#fffaf2;--line:#382b43}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--white);font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif}
+a{color:inherit;text-decoration:none}button,input{font:inherit}.wrap{max-width:1160px;margin:auto;padding:0 22px}
+header{position:sticky;top:0;z-index:10;background:#100b18ed;backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{font-family:Georgia,serif;font-size:29px;font-weight:700;letter-spacing:.4px;color:var(--gold)}.brand span{color:white}
+nav{display:flex;gap:24px;color:var(--muted);font-size:14px}nav a:hover{color:var(--gold)}.nav-cta{border:1px solid #80683a;padding:10px 15px;border-radius:30px;color:var(--gold);font-size:13px}
+.hero{padding:74px 0 55px;background:radial-gradient(ellipse at 80% 20%,#4a2c54 0%,transparent 38%),radial-gradient(ellipse at 12% 70%,#32203c 0%,transparent 40%)}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:35px;align-items:center}.eyebrow{color:var(--gold);font-size:11px;letter-spacing:3px;text-transform:uppercase;font-weight:700}
+h1{font:clamp(43px,6vw,72px)/1.02 Georgia,serif;margin:18px 0;color:var(--white);max-width:650px}h1 em{color:var(--gold);font-style:normal}.hero p{color:var(--muted);line-height:1.75;max-width:530px}.gold-btn{display:inline-block;margin-top:17px;background:linear-gradient(110deg,#f4dc93,#c89d48);color:#201629;font-weight:800;padding:14px 22px;border-radius:5px;box-shadow:0 8px 25px #c89d4825}
+.hero-art{min-height:300px;border:1px solid #78603b;border-radius:16px;background:linear-gradient(145deg,#30213b,#15101c 70%);display:grid;place-items:center;position:relative;overflow:hidden}.hero-art:before{content:"";position:absolute;width:240px;height:240px;border:1px solid #cba95b66;border-radius:50%;box-shadow:0 0 0 22px #cba95b0c,0 0 0 48px #cba95b08}.hero-mark{z-index:1;text-align:center}.hero-mark .crown{font-size:66px;color:var(--gold)}.hero-mark strong{display:block;font:42px Georgia,serif;color:var(--gold2)}.hero-mark small{letter-spacing:4px;color:var(--muted);font-size:10px}
+.section{padding:48px 0}.section-head{display:flex;justify-content:space-between;align-items:end;gap:15px;margin-bottom:22px}.section h2{font:34px Georgia,serif;margin:7px 0}.sub{color:var(--muted);font-size:13px}
+.search-row{display:flex;gap:10px;margin:22px 0 18px}.search{flex:1;min-width:0;background:var(--panel);border:1px solid var(--line);color:white;border-radius:6px;padding:13px 15px;outline:none}.search:focus{border-color:var(--gold)}
+.filters{display:flex;gap:9px;flex-wrap:wrap}.filter{border:1px solid var(--line);color:var(--muted);background:transparent;padding:9px 14px;border-radius:30px;cursor:pointer;font-size:12px}.filter.active,.filter:hover{background:var(--gold);border-color:var(--gold);color:#201629}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.card{background:var(--panel);border:1px solid var(--line);border-radius:9px;overflow:hidden;transition:.2s}.card:hover{transform:translateY(-4px);border-color:#927342}.photo{height:190px;background:linear-gradient(145deg,#38283e,#1d1724);display:grid;place-items:center;font-size:62px;position:relative}.tag{position:absolute;top:12px;left:12px;background:#e9c66b;color:#21172b;font-size:10px;font-weight:800;padding:6px 9px;border-radius:3px}.card-body{padding:14px}.category{font-size:10px;color:var(--gold);letter-spacing:1.3px;text-transform:uppercase}.card h3{font-size:14px;margin:8px 0 7px}.price{font-weight:800;color:var(--gold2);font-size:17px}.old{color:#8d8293;text-decoration:line-through;font-size:12px;margin-left:7px}.card p{color:var(--muted);font-size:11px;line-height:1.5;min-height:32px}.shop{display:block;text-align:center;margin-top:12px;padding:10px;border-radius:4px;background:linear-gradient(110deg,#f4dc93,#c89d48);color:#201629;font-weight:800;font-size:12px}.shop:hover{filter:brightness(1.08)}
+.empty{display:none;color:var(--muted);padding:30px;text-align:center;border:1px dashed var(--line);border-radius:8px}
+.note{background:#17111f;border:1px solid var(--line);padding:18px;border-radius:8px;color:var(--muted);font-size:12px;line-height:1.7}
+footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted);font-size:12px}.foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.foot strong{color:var(--gold);font:22px Georgia,serif}
+@media(max-width:850px){.grid{grid-template-columns:repeat(2,1fr)}.hero-grid{grid-template-columns:1fr}.hero-art{min-height:230px}nav{display:none}}
+@media(max-width:480px){.wrap{padding:0 15px}.nav{height:65px}.brand{font-size:25px}.nav-cta{font-size:11px;padding:8px 11px}.hero{padding:52px 0 35px}.grid{gap:10px}.photo{height:145px}.card-body{padding:11px}.section{padding:35px 0}.section h2{font-size:29px}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="brand" href="#">Loot<span>Nest</span> ♛</a>
+  <nav><a href="#home">Home</a><a href="#categories">Categories</a><a href="#deals">Deals</a><a href="#about">About</a></nav>
+  <a class="nav-cta" href="#deals">EXPLORE FINDS ↗</a>
+</div></header>
+<main>
+<section class="hero" id="home"><div class="wrap hero-grid">
+  <div><div class="eyebrow">THE SMART SHOPPING EDIT</div><h1>Find your next<br><em>favourite thing.</em></h1>
+  <p>Curated everyday finds, trending picks and pocket-friendly discoveries — all in one nest. Shop smarter with LootNest.</p>
+  <a class="gold-btn" href="#deals">Explore the collection&nbsp; →</a></div>
+  <div class="hero-art"><div class="hero-mark"><div class="crown">♛</div><strong>LootNest</strong><small>SHOP SMART • SAVE MORE</small></div></div>
+</div></section>
+<section class="section" id="categories"><div class="wrap">
+  <div class="section-head"><div><div class="eyebrow">CURATED FOR YOU</div><h2>Discover the edit</h2><div class="sub">A little something for every corner of life.</div></div></div>
+  <div class="filters" id="filters">
+    <button class="filter active" data-cat="All">All finds</button><button class="filter" data-cat="Fashion">Fashion</button><button class="filter" data-cat="Home">Home & Kitchen</button><button class="filter" data-cat="Beauty">Beauty</button><button class="filter" data-cat="Accessories">Accessories</button>
+  </div>
+</div></section>
+<section class="section" id="deals" style="padding-top:8px"><div class="wrap">
+  <div class="section-head"><div><div class="eyebrow">THE LOOTNEST PICKS</div><h2>Trending finds</h2><div class="sub">Demo listings — replace with your chosen affiliate products.</div></div></div>
+  <div class="search-row"><input class="search" id="search" type="search" placeholder="Search products..."></div>
+  <div class="grid" id="products">
+    <article class="card" data-cat="Fashion" data-name="Everyday tote bag"><div class="photo"><span class="tag">TRENDING</span>👜</div><div class="card-body"><div class="category">Fashion</div><h3>Everyday Tote Bag</h3><div class="price">₹299 <span class="old">₹599</span></div><p>A versatile everyday carry-all.</p><a class="shop" href="#" data-link="ADD_YOUR_AFFILIATE_LINK_HERE">Shop Now ↗</a></div></article>
+    <article class="card" data-cat="Home" data-name="Kitchen storage organiser"><div class="photo"><span class="tag">SMART PICK</span>🍽️</div><div class="card-body"><div class="category">Home & Kitchen</div><h3>Kitchen Storage Organiser</h3><div class="price">₹249 <span class="old">₹449</span></div><p>Make your space neat and organised.</p><a class="shop" href="#" data-link="ADD_YOUR_AFFILIATE_LINK_HERE">Shop Now ↗</a></div></article>
+    <article class="card" data-cat="Beauty" data-name="Skincare essentials set"><div class="photo"><span class="tag">EDITOR'S PICK</span>🧴</div><div class="card-body"><div class="category">Beauty</div><h3>Skincare Essentials Set</h3><div class="price">₹199 <span class="old">₹349</span></div><p>A simple self-care shelf refresh.</p><a class="shop" href="#" data-link="ADD_YOUR_AFFILIATE_LINK_HERE">Shop Now ↗</a></div></article>
+    <article class="card" data-cat="Accessories" data-name="Minimal wrist watch"><div class="photo"><span class="tag">NEW FIND</span>⌚</div><div class="card-body"><div class="category">Accessories</div><h3>Minimal Wrist Watch</h3><div class="price">₹399 <span class="old">₹799</span></div><p>A clean finishing touch to your look.</p><a class="shop" href="#" data-link="ADD_YOUR_AFFILIATE_LINK_HERE">Shop Now ↗</a></div></article>
+    <article class="card" data-cat="Fashion" data-name="Casual everyday kurti"><div class="photo">👗</div><div class="card-body"><div class="category">Fashion</div><h3>Casual Everyday Kurti</h3><div class="price">₹349 <span class="old">₹599</span></div><p>Easy style for everyday plans.</p><a class="shop" href="#" data-link="ADD_YOUR_AFFILIATE_LINK_HERE">Shop Now ↗</a></div></article>
+    <article class="card" data-cat="Home" data-name="Decor accent lamp"><div class="photo">💡</div><div class="card-body"><div class="category">Home & Kitchen</div><h3>Decor Accent Lamp</h3><div class="price">₹279 <span class="old">₹499</span></div><p>Add a warm glow to your favourite corner.</p><a class="shop" href="#" data-link="ADD_YOUR_AFFILIATE_LINK_HERE">Shop Now ↗</a></div></article>
+    <article class="card" data-cat="Beauty" data-name="Makeup organiser"><div class="photo">💄</div><div class="card-body"><div class="category">Beauty</div><h3>Makeup Organiser</h3><div class="price">₹189 <span class="old">₹299</span></div><p>Keep daily essentials close at hand.</p><a class="shop" href="#" data-link="ADD_YOUR_AFFILIATE_LINK_HERE">Shop Now ↗</a></div></article>
+    <article class="card" data-cat="Accessories" data-name="Classic sunglasses"><div class="photo">🕶️</div><div class="card-body"><div class="category">Accessories</div><h3>Classic Sunglasses</h3><div class="price">₹159 <span class="old">₹299</span></div><p>An easy accessory for sunny days.</p><a class="shop" href="#" data-link="ADD_YOUR_AFFILIATE_LINK_HERE">Shop Now ↗</a></div></article>
+  </div><div class="empty" id="empty">No matching finds. Try another search.</div>
+</div></section>
+<section class="section" id="about"><div class="wrap"><div class="note"><strong style="color:var(--gold)">A note about affiliate links</strong><br>LootNest may earn a commission when you purchase through qualifying links, at no additional cost to you. Product prices, availability and offers can change; please check the retailer's page before buying. This demo website is independent and is not an official Meesho website.</div></div></section>
+</main>
+<footer><div class="wrap foot"><div><strong>LootNest ♛</strong><div>Shop Smart • Save More</div></div><div>© <span id="year"></span> LootNest. All rights reserved.<br>Independent product discovery page.</div></div></footer>
+<script>
+const cards=[...document.querySelectorAll('.card')], buttons=[...document.querySelectorAll('.filter')], search=document.getElementById('search');
+let category='All';
+function update(){let q=search.value.toLowerCase(),visible=0;cards.forEach(c=>{let ok=(category==='All'||c.dataset.cat===category)&&c.dataset.name.toLowerCase().includes(q);c.style.display=ok?'':'none';if(ok)visible++});document.getElementById('empty').style.display=visible?'none':'block'}
+buttons.forEach(b=>b.addEventListener('click',()=>{category=b.dataset.cat;buttons.forEach(x=>x.classList.toggle('active',x===b));update()}));search.addEventListener('input',update);
+document.querySelectorAll('.shop').forEach(a=>a.addEventListener('click',e=>{if(a.dataset.link==='ADD_YOUR_AFFILIATE_LINK_HERE'){e.preventDefault();alert('Demo product: add your real affiliate URL to this button before publishing.')}}));
+document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+</body></html>
